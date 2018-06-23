@@ -1,0 +1,20 @@
+PODS:
+  - Cosmos (16.0.0)
+  - SwiftyJSON (4.1.0)
+
+DEPENDENCIES:
+  - Cosmos (~> 16.0)
+  - SwiftyJSON (~> 4.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Cosmos
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+
+PODFILE CHECKSUM: a4355f303230d5c976a69c3833f676ee354c75ab
+
+COCOAPODS: 1.5.0

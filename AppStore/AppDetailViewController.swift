@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import Cosmos
 
 class AppDetailViewController: UIViewController {
 
@@ -16,6 +17,13 @@ class AppDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
+    
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var rankLabel: UILabel!
+    @IBOutlet weak var category2Label: UILabel!
+    @IBOutlet weak var reviewCountLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var ratingView: CosmosView!
     
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var releaseNotesTextView: UITextView!
@@ -81,6 +89,15 @@ class AppDetailViewController: UIViewController {
         titleLabel.text = appData?.title
         categoryLabel.text = appData?.category
         iconImageView.image = appData?.iconImage
+        
+        ageLabel.text = appData?.age
+        rankLabel.text = "#\(appData?.rank ?? 0)"
+        category2Label.text = appData?.category
+        reviewCountLabel.text = "\(appData?.reviewCount ?? 0)개의 평가"
+        ratingLabel.text = "\(appData?.rating ?? 0.0)"
+        ratingView.rating = appData!.rating!
+        ratingView.settings.fillMode = .half
+        
         versionLabel.text = "버전 \(appData!.version!)"
         releaseNotesTextView.text = appData?.appReleaseNote
         

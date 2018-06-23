@@ -101,7 +101,7 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        
+        appDatas[row].rank = row + 1
         self.performSegue(withIdentifier: "showAppDetail", sender: appDatas[row])
     }
 }
