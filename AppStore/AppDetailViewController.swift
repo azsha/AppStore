@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import SwiftyJSON
 import Cosmos
 
 class AppDetailViewController: UIViewController {
 
-    var appData: AppDataModel?                       //전달된 앱 정보
+    //var appData: AppDataModel?                       //전달된 앱 정보
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -51,70 +50,70 @@ class AppDetailViewController: UIViewController {
 
         initLayout()
         
-        if let _ = appData?.version {
-            initView()
-        } else {
-            requestData()
-        }
+//        if let _ = appData?.version {
+//            initView()
+//        } else {
+//            requestData()
+//        }
     }
 
-    func requestData() {
-        let urlPath = "https://itunes.apple.com/lookup?id=\(appData!.appID)&country=kr"
-        print(urlPath)
-        guard let url = URL(string: urlPath) else {return}
-        
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
-            do {
-                let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-                
-                let json = JSON(jsonResult)
-                let appInfo = json["results"].arrayValue.first
-                
-                //앱 정보 저장
-                self.appData?.addInfo(json: appInfo!)
-                
-                DispatchQueue.main.async {
-                    self.initView()
-                }
-            } catch {
-                print(error)
-            }
-        })
-        task.resume()
-    }
+//    func requestData() {
+//        let urlPath = "https://itunes.apple.com/lookup?id=\(appData!.appID)&country=kr"
+//        print(urlPath)
+//        guard let url = URL(string: urlPath) else {return}
+//
+//        let session = URLSession.shared
+//
+//        let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
+//            do {
+//                let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+//                
+//                let json = JSON(jsonResult)
+//                let appInfo = json["results"].arrayValue.first
+//                
+//                //앱 정보 저장
+//                self.appData?.addInfo(json: appInfo!)
+//                
+//                DispatchQueue.main.async {
+//                    self.initView()
+//                }
+//            } catch {
+//                print(error)
+//            }
+//        })
+//        task.resume()
+//    }
     
-    func initView() {
-        titleLabel.text = appData?.title
-        categoryLabel.text = appData?.category
-        iconImageView.image = appData?.iconImage
-        
-        ageLabel.text = appData?.age
-        rankLabel.text = "#\(appData?.rank ?? 0)"
-        category2Label.text = appData?.category
-        reviewCountLabel.text = "\(appData?.reviewCount ?? 0)개의 평가"
-        ratingLabel.text = "\(appData?.rating ?? 0.0)"
-        ratingView.rating = appData!.rating!
-        ratingView.settings.fillMode = .half
-        
-        versionLabel.text = "버전 \(appData!.version!)"
-        releaseNotesTextView.text = appData?.appReleaseNote
-        
-        descriptionTextView.text = appData?.appDescription
-        sellerLabel.text = appData?.sellerName
-        
-        if let _ = appData?.screenShotImages {
-            showScreenShots()
-        } else {
-            DispatchQueue.global().async {
-                self.appData?.downloadScreenShotImage()
-                DispatchQueue.main.async {
-                    self.showScreenShots()
-                }
-            }
-        }
-    }
+//    func initView() {
+//        titleLabel.text = appData?.title
+//        categoryLabel.text = appData?.category
+//        iconImageView.image = appData?.iconImage
+//
+//        ageLabel.text = appData?.age
+//        rankLabel.text = "#\(appData?.rank ?? 0)"
+//        category2Label.text = appData?.category
+//        reviewCountLabel.text = "\(appData?.reviewCount ?? 0)개의 평가"
+//        ratingLabel.text = "\(appData?.rating ?? 0.0)"
+//        ratingView.rating = appData!.rating!
+//        ratingView.settings.fillMode = .half
+//
+//        versionLabel.text = "버전 \(appData!.version!)"
+//        releaseNotesTextView.text = appData?.appReleaseNote
+//
+//        descriptionTextView.text = appData?.appDescription
+//        sellerLabel.text = appData?.sellerName
+//
+//        if let _ = appData?.screenShotImages {
+//            showScreenShots()
+//        } else {
+//            DispatchQueue.global().async {
+//                self.appData?.downloadScreenShotImage()
+//                DispatchQueue.main.async {
+//                    self.showScreenShots()
+//                }
+//            }
+//        }
+//    }
     
     func showScreenShots() {
         let screenShotImageViews: [UIImageView] = [screenshot1ImageView, screenshot2ImageView, screenshot3ImageView, screenshot4ImageView, screenshot5ImageView, screenshot6ImageView]
@@ -122,16 +121,16 @@ class AppDetailViewController: UIViewController {
         let screenShotImageWidthLC: [NSLayoutConstraint] = [screenshot1WidthLC, screenshot2WidthLC, screenshot3WidthLC, screenshot4WidthLC, screenshot5WidthLC, screenshot6WidthLC]
         
         // 스크린샷이 6개 이하인 경우 이미지뷰 조정
-        for i in 0..<6 {
-            if i < appData!.screenShotImages!.count {
-                screenShotImageViews[i].image = appData!.screenShotImages![i]
-            } else {
-                screenShotImageWidthLC[i].constant = 0
-            }
-            
-            screenShotImageViews[i].layer.masksToBounds = true
-            screenShotImageViews[i].layer.cornerRadius = 15
-        }
+//        for i in 0..<6 {
+//            if i < appData!.screenShotImages!.count {
+//                screenShotImageViews[i].image = appData!.screenShotImages![i]
+//            } else {
+//                screenShotImageWidthLC[i].constant = 0
+//            }
+//
+//            screenShotImageViews[i].layer.masksToBounds = true
+//            screenShotImageViews[i].layer.cornerRadius = 15
+//        }
     }
     
     func initLayout() {
@@ -140,6 +139,10 @@ class AppDetailViewController: UIViewController {
         iconImageView.layer.borderWidth = 0.5
         iconImageView.layer.borderColor = UIColor.lightGray.cgColor
         
+    }
+    
+    deinit {
+        print("AppDetailViewController Deinit!")
     }
     
     override func didReceiveMemoryWarning() {

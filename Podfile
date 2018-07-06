@@ -6,7 +6,8 @@ target 'AppStore' do
   use_frameworks!
 
   # Pods for AppStore
-  pod 'SwiftyJSON', '~> 4.0'
+  pod 'RxSwift', '~> 4.0'
+  pod 'RxCocoa', '~> 4.0'
   pod 'Cosmos', '~> 16.0'
   
   post_install do |installer|

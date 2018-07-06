@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class MainViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var appDatas: [AppDataModel] = []                       //앱 정보 배열
+    var appEntrys: [Response.Feed.Entry] = []                   //앱 정보 배열
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +32,22 @@ class MainViewController: UIViewController {
         
         let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
             do {
-                let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                //let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
                 
-                let json = JSON(jsonResult)
-                let appInfos = json["feed"]["entry"].arrayValue
+                let responseData = try JSONDecoder().decode(Response.self, from: data!)
+                
+                self.appEntrys = responseData.feed.entry
+                
+                dump(self.appEntrys)
+                
+//                let json = JSON(jsonResult)
+//                let appInfos = json["feed"]["entry"].arrayValue
                 
                 //앱 정보 저장
-                for appInfo in appInfos {
-                    let appData = AppDataModel(json: appInfo)
-                    self.appDatas.append(appData)
-                }
+//                for appInfo in appInfos {
+//                    let appData = AppDataModel(json: appInfo)
+//                    self.appDatas.append(appData)
+//                }
             
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -59,7 +64,7 @@ class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationController = segue.destination as? AppDetailViewController else { return }
         
-        destinationController.appData = sender as? AppDataModel
+        //destinationController.appData = sender as? AppDataModel
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,29 +75,14 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appDatas.count
+        return appEntrys.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as! MainTableViewCell
         let row = indexPath.row
         
-        cell.titleLabel.text = appDatas[row].title
-        cell.categoryLabel.text = appDatas[row].category
-        
-        if let iconIamge = appDatas[row].iconImage {
-            cell.appIconImageView.image = iconIamge
-        } else {
-            cell.appIconImageView.image = nil
-            
-            //이미지가 없는 경우 서버로부터 다운로드
-            DispatchQueue.global().async {
-                self.appDatas[row].downloadIconImage()
-                DispatchQueue.main.async {
-                    cell.appIconImageView.image = self.appDatas[row].iconImage
-                }
-            }
-        }
+        //cell.appData = appDatas[row]
         
         return cell
     }
@@ -101,8 +91,8 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        appDatas[row].rank = row + 1
-        self.performSegue(withIdentifier: "showAppDetail", sender: appDatas[row])
+        //appDatas[row].rank = row + 1
+        //self.performSegue(withIdentifier: "showAppDetail", sender: appDatas[row].appID)
     }
 }
 
