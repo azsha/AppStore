@@ -131,11 +131,11 @@
             <objects>
                 <viewController id="gYF-8V-a4p" customClass="AppDetailViewController" customModule="AppStore" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3yT-vI-a79">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2X4-ia-bgj">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="1136"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVP-Hw-bYS">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="926"/>
@@ -471,6 +471,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ydn-Oh-Jve"/>
                     </view>
+                    <size key="freeformSize" width="375" height="1200"/>
                     <connections>
                         <outlet property="ageLabel" destination="aF8-5S-KAf" id="Tgf-4G-OsM"/>
                         <outlet property="category2Label" destination="M33-jS-U6a" id="kwT-GG-f97"/>

@@ -9,50 +9,51 @@
 import Foundation
 
 struct Response: Codable {
-    struct Feed: Codable {
-        struct Entry: Codable {
-            struct Name: Codable {
-                var label: String
-            }
-            
-            struct Image: Codable {
-                var label: String
-            }
-
-            struct Title: Codable {
-                var label: String
-            }
-            
-            struct Category: Codable {
-                struct Attributes: Codable {
-                    var label: String
-                }
-                var attributes: Attributes
-            }
-            
-            var name: Name
-            var image: [Image]
-            var title: Title
-            var category: Category
-            
-            private enum CodingKeys: String, CodingKey {
-                case name = "im:name"
-                case image = "im:image"
-                case title
-                case category
-            }
-        }
-        var entry: [Entry]
-    }
     var feed: Feed
 }
 
+struct Feed: Codable {
+    var entry: [Entry]
+}
 
+struct Entry: Codable {
+    var name: Name
+    var image: [Image]
+    var id: Id
+    var category: Category
+    var rank: Int?
+    
+    private enum CodingKeys: String, CodingKey {
+        case name = "im:name"
+        case image = "im:image"
+        case id
+        case category
+    }
+}
 
+struct Name: Codable {
+    var label: String
+}
 
+struct Image: Codable {
+    var label: String
+}
 
+struct Id: Codable {
+    var attributes: Attributes
+}
 
+struct Category: Codable {
+    var attributes: Attributes
+}
 
-
-
+struct Attributes: Codable {
+    var id: String?
+    var label: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "im:id"
+        case label
+    }
+}
 

@@ -11,7 +11,7 @@ import Cosmos
 
 class AppDetailViewController: UIViewController {
 
-    //var appData: AppDataModel?                       //전달된 앱 정보
+    var appId: String?                                          //전달된 앱 아이디 정보
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!

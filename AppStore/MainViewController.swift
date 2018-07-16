@@ -11,7 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var appEntrys: [Response.Feed.Entry] = []                   //앱 정보 배열
+    var appEntrys: [Entry] = []                   //앱 정보 배열
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,25 +30,13 @@ class MainViewController: UIViewController {
         
         let session = URLSession.shared
         
-        let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
+        let task = session.dataTask(with: url) { (data, response, error) in
             do {
-                //let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-                
                 let responseData = try JSONDecoder().decode(Response.self, from: data!)
-                
                 self.appEntrys = responseData.feed.entry
-                
+                (0..<self.appEntrys.count).forEach{ self.appEntrys[$0].rank = $0 + 1 }
                 dump(self.appEntrys)
                 
-//                let json = JSON(jsonResult)
-//                let appInfos = json["feed"]["entry"].arrayValue
-                
-                //앱 정보 저장
-//                for appInfo in appInfos {
-//                    let appData = AppDataModel(json: appInfo)
-//                    self.appDatas.append(appData)
-//                }
-            
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -56,13 +44,14 @@ class MainViewController: UIViewController {
             } catch {
                 print(error)
             }
-        })
+        }
         task.resume()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destinationController = segue.destination as? AppDetailViewController else { return }
+        if let destinationController = segue.destination as? AppDetailViewController {
+            destinationController.appId = sender as? String
+        }
         
         //destinationController.appData = sender as? AppDataModel
     }
@@ -82,7 +71,7 @@ extension MainViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as! MainTableViewCell
         let row = indexPath.row
         
-        //cell.appData = appDatas[row]
+        cell.appData = appEntrys[row]
         
         return cell
     }
@@ -91,8 +80,7 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        //appDatas[row].rank = row + 1
-        //self.performSegue(withIdentifier: "showAppDetail", sender: appDatas[row].appID)
+        self.performSegue(withIdentifier: "showAppDetail", sender: appEntrys[row].id)
     }
 }
 

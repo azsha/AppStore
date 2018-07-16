@@ -7,36 +7,20 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var appIconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     
-    enum ImageDownloadState {
-        case none
-        case downloading
-        case downloaded
+    var appData: Entry? {
+        didSet {
+            titleLabel.text = appData?.name.label
+            categoryLabel.text = appData?.category.attributes.label
+            appIconImageView.sd_setImage(with: URL(string: appData!.image[0].label))
+        }
     }
-    
-    var imageDownloadState: ImageDownloadState = .none
-    
-//    var appData: AppDataModel? {
-//        didSet {
-//            titleLabel.text = appData!.title
-//            categoryLabel.text = appData!.category
-//            
-//            DispatchQueue.global().async {
-//                let appIconImage = self.downloadImage(urlPath: self.appData!.iconUrlPath, state: self.imageDownloadState)
-//                self.imageDownloadState = .downloading
-//                
-//                DispatchQueue.main.async {
-//                    self.appIconImageView.image = appIconImage
-//                    self.imageDownloadState = .downloaded
-//                }
-//            }
-//        }
-//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,16 +35,5 @@ class MainTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    func downloadImage(urlPath: String, state: ImageDownloadState) -> UIImage? {
-        guard state == .none else { return nil }
-        guard let imageUrl = URL(string: urlPath) else { return nil }
-        
-        if let data = try? Data(contentsOf: imageUrl) {
-            return UIImage(data: data)
-        } else {
-            return nil
-        }
     }
 }
