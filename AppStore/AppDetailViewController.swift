@@ -49,42 +49,37 @@ class AppDetailViewController: UIViewController {
         super.viewDidLoad()
 
         initLayout()
-        
-//        if let _ = appData?.version {
-//            initView()
-//        } else {
-//            requestData()
-//        }
+        requestData()
     }
 
-//    func requestData() {
-//        let urlPath = "https://itunes.apple.com/lookup?id=\(appData!.appID)&country=kr"
-//        print(urlPath)
-//        guard let url = URL(string: urlPath) else {return}
-//
-//        let session = URLSession.shared
-//
-//        let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
-//            do {
-//                let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-//                
-//                let json = JSON(jsonResult)
-//                let appInfo = json["results"].arrayValue.first
-//                
-//                //앱 정보 저장
+    func requestData() {
+        let urlPath = "https://itunes.apple.com/lookup?id=\(appId ?? "")&country=kr"
+        print(urlPath)
+        guard let url = URL(string: urlPath) else {return}
+
+        let session = URLSession.shared
+
+        let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
+            do {
+                let jsonResult = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                
+                //let json = JSON(jsonResult)
+                //let appInfo = json["results"].arrayValue.first
+                
+                //앱 정보 저장
 //                self.appData?.addInfo(json: appInfo!)
-//                
-//                DispatchQueue.main.async {
-//                    self.initView()
-//                }
-//            } catch {
-//                print(error)
-//            }
-//        })
-//        task.resume()
-//    }
+                
+                DispatchQueue.main.async {
+                    self.initView()
+                }
+            } catch {
+                print(error)
+            }
+        })
+        task.resume()
+    }
     
-//    func initView() {
+    func initView() {
 //        titleLabel.text = appData?.title
 //        categoryLabel.text = appData?.category
 //        iconImageView.image = appData?.iconImage
@@ -113,14 +108,14 @@ class AppDetailViewController: UIViewController {
 //                }
 //            }
 //        }
-//    }
+    }
     
     func showScreenShots() {
-        let screenShotImageViews: [UIImageView] = [screenshot1ImageView, screenshot2ImageView, screenshot3ImageView, screenshot4ImageView, screenshot5ImageView, screenshot6ImageView]
-        
-        let screenShotImageWidthLC: [NSLayoutConstraint] = [screenshot1WidthLC, screenshot2WidthLC, screenshot3WidthLC, screenshot4WidthLC, screenshot5WidthLC, screenshot6WidthLC]
-        
-        // 스크린샷이 6개 이하인 경우 이미지뷰 조정
+//        let screenShotImageViews: [UIImageView] = [screenshot1ImageView, screenshot2ImageView, screenshot3ImageView, screenshot4ImageView, screenshot5ImageView, screenshot6ImageView]
+//        
+//        let screenShotImageWidthLC: [NSLayoutConstraint] = [screenshot1WidthLC, screenshot2WidthLC, screenshot3WidthLC, screenshot4WidthLC, screenshot5WidthLC, screenshot6WidthLC]
+//        
+//        // 스크린샷이 6개 이하인 경우 이미지뷰 조정
 //        for i in 0..<6 {
 //            if i < appData!.screenShotImages!.count {
 //                screenShotImageViews[i].image = appData!.screenShotImages![i]
