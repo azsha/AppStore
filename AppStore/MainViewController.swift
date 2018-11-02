@@ -62,17 +62,6 @@ class MainViewController: UIViewController {
                 self.tableView.reloadData()
             })
             .disposed(by: disposeBag)
-        
-        
-//        getData()
-//            .subscribe(onNext: {
-//                self.appEntrys = $0
-//                dump(self.appEntrys)
-//                self.tableView.reloadData()
-//            })
-//            .disposed(by: disposeBag)
- 
-//        requestData()
     }
     
     // RxSwift 를 사용한 방법
