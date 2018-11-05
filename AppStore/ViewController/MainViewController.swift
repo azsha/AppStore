@@ -20,7 +20,7 @@ extension Reactive where Base: DataRequest {
                 case .success(let value):
                     observer.onNext(value)
                     observer.onCompleted()
-                
+                    
                 case .failure(let error):
                     observer.onError(error)
                 }
@@ -29,7 +29,6 @@ extension Reactive where Base: DataRequest {
         })
     }
 }
-
 
 class MainViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -46,15 +45,17 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        _ = Alamofire.request("https://itunes.apple.com/kr/rss/topfreeapplications/limit=50/genre=6015/json", method: .get, parameters: nil, encoding: JSONEncoding.default).rx.responseJSON()
-            .map { value -> [Entry] in
-                let responseData = try? JSONDecoder().decode(Response.self, from: value as! Data)
-                let appEntrys = responseData!.feed.entry
-                return appEntrys
+        Alamofire.request("https://itunes.apple.com/kr/rss/topfreeapplications/limit=50/genre=6015/json",
+                          method: .get,
+                          parameters: nil,
+                          encoding: JSONEncoding.default).rx.responseJSON().map { value -> [Entry] in
+                            let responseData = try? JSONDecoder().decode(Response.self, from: value as! Data)
+                            let appEntrys = responseData!.feed.entry
+                            return appEntrys
             }
             .subscribe(onNext: {
                 self.appEntrys = $0
@@ -70,7 +71,7 @@ class MainViewController: UIViewController {
         
         return Observable.create({ emitter in
             let url = URL(string: urlString)!
-            URLSession().dataTask(with: url) { (data, response, error) in
+            URLSession().dataTask(with: url) { (data, _, error) in
                 guard error == nil else { return }
                 let responseData = try? JSONDecoder().decode(Response.self, from: data!)
                 let appEntrys = responseData!.feed.entry
@@ -89,7 +90,7 @@ class MainViewController: UIViewController {
         
         let session = URLSession.shared
         
-        let task = session.dataTask(with: url) { (data, response, error) in
+        let task = session.dataTask(with: url) { (data, _, _) in
             do {
                 let responseData = try JSONDecoder().decode(Response.self, from: data!)
                 self.appEntrys = responseData.feed.entry
@@ -113,11 +114,6 @@ class MainViewController: UIViewController {
         }
         
         //destinationController.appData = sender as? AppDataModel
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

@@ -1,0 +1,31 @@
+line_length: 160
+
+disabled_rules:
+- trailing_newline
+- opening_brace
+- empty_count
+- comma
+- colon
+- force_cast
+- type_name
+- trailing_semicolon
+- trailing_whitespace
+- force_try
+- function_body_length
+- nesting
+- identifier_name
+
+opt_in_rules:
+- empty_count
+- missing_docs
+
+excluded:
+- Carthage
+- Pods
+
+# https://www.hackingwithswift.com/articles/97/how-to-clean-up-your-code-formatting-with-swiftlint
+# http://disq.us/p/1kzlbti
+# https://academy.realm.io/kr/posts/slug-jp-simard-swiftlint/
+# http://zeddios.tistory.com/447
+# https://medium.com/developermind/using-swiftlint-and-danger-for-swift-best-practices-48432e4e268a
+# https://docs.sider.review/tools/swiftlint.html

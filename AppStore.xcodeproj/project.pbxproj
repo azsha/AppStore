@@ -21,6 +21,7 @@
 		D2B29A0920DC7D4B00D42C4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2B29A0720DC7D4B00D42C4C /* LaunchScreen.storyboard */; };
 		D2B29A1420DC7D4B00D42C4C /* AppStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B29A1320DC7D4B00D42C4C /* AppStoreTests.swift */; };
 		D2B29A1F20DC7D4C00D42C4C /* AppStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B29A1E20DC7D4C00D42C4C /* AppStoreUITests.swift */; };
+		E8B8001821906EDB00C9B706 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E8B8001721906EDB00C9B706 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		D2B29A1A20DC7D4B00D42C4C /* AppStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2B29A1E20DC7D4C00D42C4C /* AppStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUITests.swift; sourceTree = "<group>"; };
 		D2B29A2020DC7D4C00D42C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8B8001721906EDB00C9B706 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		D2B299F220DC7D4A00D42C4C = {
 			isa = PBXGroup;
 			children = (
+				E8B8001721906EDB00C9B706 /* .swiftlint.yml */,
 				D2B299FD20DC7D4A00D42C4C /* AppStore */,
 				D2B29A1220DC7D4B00D42C4C /* AppStoreTests */,
 				D2B29A1D20DC7D4C00D42C4C /* AppStoreUITests */,
@@ -145,12 +148,11 @@
 		D2B299FD20DC7D4A00D42C4C /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
-				D2B299FE20DC7D4A00D42C4C /* AppDelegate.swift */,
-				D2B29A0020DC7D4A00D42C4C /* MainViewController.swift */,
-				D2AB9A4D20DCB67600F8E497 /* MainTableViewCell.swift */,
-				D2AB9A4F20DCBAB500F8E497 /* AppDetailViewController.swift */,
-				D2AB9A5120DCC01900F8E497 /* AppDataModel.swift */,
-				D25CAC1A20EDF8B200ED474C /* AppDetailDataModel.swift */,
+				E8B8001D219071F800C9B706 /* App */,
+				E8B80019219071BE00C9B706 /* Model */,
+				E8B8001A219071C900C9B706 /* ViewController */,
+				E8B8001C219071E400C9B706 /* ViewModel */,
+				E8B8001B219071D800C9B706 /* View */,
 				D2B29A0220DC7D4A00D42C4C /* Main.storyboard */,
 				D2B29A0520DC7D4B00D42C4C /* Assets.xcassets */,
 				D2B29A0720DC7D4B00D42C4C /* LaunchScreen.storyboard */,
@@ -177,6 +179,47 @@
 			path = AppStoreUITests;
 			sourceTree = "<group>";
 		};
+		E8B80019219071BE00C9B706 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2AB9A5120DCC01900F8E497 /* AppDataModel.swift */,
+				D25CAC1A20EDF8B200ED474C /* AppDetailDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E8B8001A219071C900C9B706 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D2B29A0020DC7D4A00D42C4C /* MainViewController.swift */,
+				D2AB9A4F20DCBAB500F8E497 /* AppDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E8B8001B219071D800C9B706 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2AB9A4D20DCB67600F8E497 /* MainTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E8B8001C219071E400C9B706 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E8B8001D219071F800C9B706 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D2B299FE20DC7D4A00D42C4C /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -189,6 +232,7 @@
 				D2B299F820DC7D4A00D42C4C /* Frameworks */,
 				D2B299F920DC7D4A00D42C4C /* Resources */,
 				19BAA33BF3856A90A301B74E /* [CP] Embed Pods Frameworks */,
+				E8B8001621906E8A00C9B706 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -249,13 +293,16 @@
 				TargetAttributes = {
 					D2B299FA20DC7D4A00D42C4C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 					};
 					D2B29A0E20DC7D4B00D42C4C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = D2B299FA20DC7D4A00D42C4C;
 					};
 					D2B29A1920DC7D4B00D42C4C = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = D2B299FA20DC7D4A00D42C4C;
 					};
 				};
@@ -285,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B8001821906EDB00C9B706 /* .swiftlint.yml in Resources */,
 				D2B29A0920DC7D4B00D42C4C /* LaunchScreen.storyboard in Resources */,
 				D2B29A0620DC7D4B00D42C4C /* Assets.xcassets in Resources */,
 				D2B29A0420DC7D4A00D42C4C /* Main.storyboard in Resources */,
@@ -335,6 +383,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-AppStore/Pods-AppStore-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -343,6 +392,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -387,6 +437,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E8B8001621906E8A00C9B706 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -506,7 +574,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -560,7 +628,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -584,7 +652,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -604,7 +672,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -625,7 +693,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStore.app/AppStore";
 			};
@@ -647,7 +715,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStore.app/AppStore";
 			};
@@ -668,7 +736,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStoreUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = AppStore;
 			};
@@ -689,7 +757,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStoreUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = AppStore;
 			};

@@ -8,9 +8,10 @@ target 'AppStore' do
   # Pods for AppStore
   pod 'Alamofire'
   pod 'SDWebImage'
-  pod 'RxSwift', '~> 4.0'
-  pod 'RxCocoa', '~> 4.0'
-  pod 'Cosmos', '~> 16.0'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'Cosmos'
+  pod 'SwiftLint'
   
   post_install do |installer|
       installer.pods_project.build_configurations.each do |config|
