@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AppDetailDataModel: Codable {
+struct AppDetailData: Codable {
     var appID: String                                           //앱 아이디
     var iconUrlPath: String                                     //앱 아이콘 URL 경로
     var title: String                                           //앱 타이틀
