@@ -2,7 +2,10 @@
 
 ## Project Target
 
-* Functional Reactive Programing Master
+* Functional Programing
 * RxSwift
 * Reference Type -> Value Type
-* Etc..
+* ReactorKit
+* SnapKit
+* Moya
+* Enum

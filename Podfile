@@ -6,13 +6,24 @@ target 'AppStore' do
   use_frameworks!
 
   # Pods for AppStore
-  pod 'Alamofire'
+  # Rx
   pod 'RxAlamofire'
-  pod 'SDWebImage'
   pod 'RxSwift'
   pod 'RxCocoa'
+  
+  # Network
+  pod 'Alamofire'
+  pod 'SDWebImage'
+  
+  # Etc
   pod 'Cosmos'
   pod 'SwiftLint'
+  
+  # Framework
+  pod 'ReactorKit'
+
+  # UI
+  pod 'SnapKit'
   
   post_install do |installer|
       installer.pods_project.build_configurations.each do |config|
