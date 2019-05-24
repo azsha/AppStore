@@ -9,12 +9,14 @@
 import UIKit
 import Alamofire
 import RxSwift
+import Moya
 
 class AppListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var appDatas: [Response.Feed.Entry] = []
-    let urlString = "https://itunes.apple.com/kr/rss/topfreeapplications/limit=50/genre=6015/json"
+    var appDatas: [Results] = []
+    
+    let provider = MoyaProvider<Appstore>()
     
     let disposeBag = DisposeBag()
     
@@ -30,18 +32,18 @@ class AppListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        Alamofire.request(urlString, method: .get, parameters: nil,
-                          encoding: JSONEncoding.default).rx.responseJSON().map {value -> [Response.Feed.Entry] in
-                            let responseData = try? JSONDecoder().decode(Response.self, from: value as! Data)
-                            let appEntrys = responseData!.feed.entry
-                            return appEntrys
+        provider.rx.request(.all).subscribe({ [weak self] result in
+            switch result {
+            case .success(let response):
+                let responseJSON = try? JSONDecoder().decode(Response.self, from: response.data)
+                self?.appDatas = (responseJSON?.feed.results)!
+                
+                self?.tableView.reloadData()
+                
+            case .error :
+                print("Failure")
             }
-            .subscribe(onNext: {
-                self.appDatas = $0
-                dump(self.appDatas)
-                self.tableView.reloadData()
-            })
-            .disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

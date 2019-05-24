@@ -20,6 +20,7 @@
 		D2B29A0920DC7D4B00D42C4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2B29A0720DC7D4B00D42C4C /* LaunchScreen.storyboard */; };
 		D2B29A1420DC7D4B00D42C4C /* AppStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B29A1320DC7D4B00D42C4C /* AppStoreTests.swift */; };
 		D2B29A1F20DC7D4C00D42C4C /* AppStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B29A1E20DC7D4C00D42C4C /* AppStoreUITests.swift */; };
+		E82C10162298401C00262C05 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C10152298401C00262C05 /* AppStore.swift */; };
 		E8B8001821906EDB00C9B706 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E8B8001721906EDB00C9B706 /* .swiftlint.yml */; };
 		E8B8002121907A4200C9B706 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8002021907A4200C9B706 /* AppData.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		D2B29A1A20DC7D4B00D42C4C /* AppStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2B29A1E20DC7D4C00D42C4C /* AppStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUITests.swift; sourceTree = "<group>"; };
 		D2B29A2020DC7D4C00D42C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E82C10152298401C00262C05 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		E8B8001721906EDB00C9B706 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E8B8002021907A4200C9B706 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,7 +154,7 @@
 				E8B80019219071BE00C9B706 /* Model */,
 				E8B8001A219071C900C9B706 /* ViewController */,
 				E8B8001B219071D800C9B706 /* View */,
-				E82C101422983A4600262C05 /* Manager */,
+				E82C101422983A4600262C05 /* Network */,
 				E8B8002221907B6A00C9B706 /* Support */,
 				D2B29A0220DC7D4A00D42C4C /* Main.storyboard */,
 				D2B29A0520DC7D4B00D42C4C /* Assets.xcassets */,
@@ -180,11 +182,12 @@
 			path = AppStoreUITests;
 			sourceTree = "<group>";
 		};
-		E82C101422983A4600262C05 /* Manager */ = {
+		E82C101422983A4600262C05 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E82C10152298401C00262C05 /* AppStore.swift */,
 			);
-			path = Manager;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		E8B80019219071BE00C9B706 /* Model */ = {
@@ -399,21 +402,27 @@
 				"${PODS_ROOT}/Target Support Files/Pods-AppStore/Pods-AppStore-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactorKit/ReactorKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactorKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -486,6 +495,7 @@
 				E8B8002121907A4200C9B706 /* AppData.swift in Sources */,
 				D2B299FF20DC7D4A00D42C4C /* AppDelegate.swift in Sources */,
 				D2AB9A5020DCBAB500F8E497 /* AppDetailViewController.swift in Sources */,
+				E82C10162298401C00262C05 /* AppStore.swift in Sources */,
 				D25CAC1B20EDF8B200ED474C /* AppDetailData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

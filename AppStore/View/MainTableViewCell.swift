@@ -14,11 +14,11 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     
-    var appData: Response.Feed.Entry? {
+    var appData: Results? {
         didSet {
-            titleLabel.text = appData?.name.label
-            categoryLabel.text = appData?.category.attributes.label
-            appIconImageView.sd_setImage(with: URL(string: appData!.image[0].label))
+            titleLabel.text = appData?.name
+            //categoryLabel.text = appData?.category.attributes.label
+            appIconImageView.sd_setImage(with: URL(string: appData!.artworkUrl100))
         }
     }
     
