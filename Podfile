@@ -7,6 +7,7 @@ target 'AppStore' do
 
   # Pods for AppStore
   pod 'Alamofire'
+  pod 'RxAlamofire'
   pod 'SDWebImage'
   pod 'RxSwift'
   pod 'RxCocoa'

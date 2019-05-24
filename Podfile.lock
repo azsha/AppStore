@@ -1,19 +1,26 @@
 PODS:
-  - Alamofire (4.7.3)
-  - Cosmos (17.0.0)
-  - RxAtomic (4.4.0)
-  - RxCocoa (4.4.0):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.4.0):
-    - RxAtomic (~> 4.4)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
-  - SwiftLint (0.27.0)
+  - Alamofire (4.8.2)
+  - Cosmos (19.0.3)
+  - RxAlamofire (5.0.0):
+    - RxAlamofire/Core (= 5.0.0)
+  - RxAlamofire/Core (5.0.0):
+    - Alamofire (~> 4.8)
+    - RxSwift (~> 5.0)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
+  - SDWebImage (5.0.3):
+    - SDWebImage/Core (= 5.0.3)
+  - SDWebImage/Core (5.0.3)
+  - SwiftLint (0.32.0)
 
 DEPENDENCIES:
   - Alamofire
   - Cosmos
+  - RxAlamofire
   - RxCocoa
   - RxSwift
   - SDWebImage
@@ -23,21 +30,23 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Cosmos
-    - RxAtomic
+    - RxAlamofire
     - RxCocoa
+    - RxRelay
     - RxSwift
     - SDWebImage
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  Cosmos: 309e489f21ffc91a1eeecfebef7f817cd2fcfba6
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
+  RxAlamofire: e7875a012aff55345672d0f70a2a9cd6aeb0f211
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  SDWebImage: d4f87d7d36c8a4d9f9459dc282e0caa057fdf935
+  SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
 
-PODFILE CHECKSUM: f4a8d600d42d6608846b7ebcc04cf0fbcf34ccee
+PODFILE CHECKSUM: e3a46cc4dc87ffe0976f33e3767f19963156fc2f
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.2

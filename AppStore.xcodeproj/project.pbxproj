@@ -21,9 +21,7 @@
 		D2B29A1420DC7D4B00D42C4C /* AppStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B29A1320DC7D4B00D42C4C /* AppStoreTests.swift */; };
 		D2B29A1F20DC7D4C00D42C4C /* AppStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B29A1E20DC7D4C00D42C4C /* AppStoreUITests.swift */; };
 		E8B8001821906EDB00C9B706 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E8B8001721906EDB00C9B706 /* .swiftlint.yml */; };
-		E8B8001F219074F400C9B706 /* AppListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8001E219074F400C9B706 /* AppListViewModel.swift */; };
 		E8B8002121907A4200C9B706 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8002021907A4200C9B706 /* AppData.swift */; };
-		E8B8002521907B8200C9B706 /* Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8002421907B8200C9B706 /* Rx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,9 +68,7 @@
 		D2B29A1E20DC7D4C00D42C4C /* AppStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUITests.swift; sourceTree = "<group>"; };
 		D2B29A2020DC7D4C00D42C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8B8001721906EDB00C9B706 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
-		E8B8001E219074F400C9B706 /* AppListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListViewModel.swift; sourceTree = "<group>"; };
 		E8B8002021907A4200C9B706 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
-		E8B8002421907B8200C9B706 /* Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rx.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,8 +151,8 @@
 				E8B8001D219071F800C9B706 /* App */,
 				E8B80019219071BE00C9B706 /* Model */,
 				E8B8001A219071C900C9B706 /* ViewController */,
-				E8B8001C219071E400C9B706 /* ViewModel */,
 				E8B8001B219071D800C9B706 /* View */,
+				E82C101422983A4600262C05 /* Manager */,
 				E8B8002221907B6A00C9B706 /* Support */,
 				D2B29A0220DC7D4A00D42C4C /* Main.storyboard */,
 				D2B29A0520DC7D4B00D42C4C /* Assets.xcassets */,
@@ -182,6 +178,13 @@
 				D2B29A2020DC7D4C00D42C4C /* Info.plist */,
 			);
 			path = AppStoreUITests;
+			sourceTree = "<group>";
+		};
+		E82C101422983A4600262C05 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		E8B80019219071BE00C9B706 /* Model */ = {
@@ -210,14 +213,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		E8B8001C219071E400C9B706 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				E8B8001E219074F400C9B706 /* AppListViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		E8B8001D219071F800C9B706 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,7 +232,6 @@
 		E8B8002321907B7400C9B706 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				E8B8002421907B8200C9B706 /* Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -402,11 +396,12 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AppStore/Pods-AppStore-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AppStore/Pods-AppStore-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
@@ -414,14 +409,15 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppStore/Pods-AppStore-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppStore/Pods-AppStore-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2308C0D898856CD1A0BF5591 /* [CP] Check Pods Manifest.lock */ = {
@@ -485,12 +481,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8B8001F219074F400C9B706 /* AppListViewModel.swift in Sources */,
 				D2B29A0120DC7D4A00D42C4C /* AppListViewController.swift in Sources */,
 				D2AB9A4E20DCB67600F8E497 /* MainTableViewCell.swift in Sources */,
 				E8B8002121907A4200C9B706 /* AppData.swift in Sources */,
 				D2B299FF20DC7D4A00D42C4C /* AppDelegate.swift in Sources */,
-				E8B8002521907B8200C9B706 /* Rx.swift in Sources */,
 				D2AB9A5020DCBAB500F8E497 /* AppDetailViewController.swift in Sources */,
 				D25CAC1B20EDF8B200ED474C /* AppDetailData.swift in Sources */,
 			);
@@ -604,6 +598,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -657,6 +652,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -676,7 +672,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -696,7 +692,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -717,7 +713,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStore.app/AppStore";
 			};
@@ -739,7 +735,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStore.app/AppStore";
 			};
@@ -760,7 +756,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStoreUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = AppStore;
 			};
@@ -781,7 +777,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.azsha.AppStoreUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = AppStore;
 			};
