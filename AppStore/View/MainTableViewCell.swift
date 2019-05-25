@@ -14,7 +14,7 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     
-    var appData: Results? {
+    var appData: AppData.Feed.Results? {
         didSet {
             titleLabel.text = appData?.name
             //categoryLabel.text = appData?.category.attributes.label

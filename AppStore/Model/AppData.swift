@@ -8,19 +8,25 @@
 
 import Foundation
 
-struct Response: Codable {
+struct AppData: Decodable {
+    /// Feed Json Array
+    struct Feed: Decodable {
+        /// Result Json Array
+        struct Results: Decodable {
+            var rank: Int?
+            
+            var artistName: String
+            var id: String
+            var name: String
+            var artworkUrl100: String
+        }
+        
+        var results: [Results]
+    }
+    
     var feed: Feed
 }
 
-struct Feed: Codable {
-    var results: [Results]
-}
 
-struct Results: Codable {
-    var rank: Int?
-    
-    var artistName: String
-    var id: String
-    var name: String
-    var artworkUrl100: String
-}
+
+

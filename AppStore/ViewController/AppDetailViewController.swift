@@ -14,7 +14,7 @@ import RxSwift
 class AppDetailViewController: UIViewController {
 
     var appId: String?                                          //전달된 앱 아이디 정보
-    var appDetailData: AppDetailData?
+    var appDetailData: [AppDetailData.Results] = []
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -62,7 +62,7 @@ class AppDetailViewController: UIViewController {
             switch result {
             case .success(let response):
                 guard let responseJSON = try? JSONDecoder().decode(AppDetailData.self, from: response.data) else { return }
-                self?.appDetailData = responseJSON
+                self?.appDetailData = responseJSON.results
                 self?.setupView()
                 
             case .error :
@@ -77,8 +77,8 @@ class AppDetailViewController: UIViewController {
         iconImageView.layer.borderWidth = 0.5
         iconImageView.layer.borderColor = UIColor.lightGray.cgColor
         
-        titleLabel.text = appDetailData?.title
-        categoryLabel.text = appDetailData?.category
-        descriptionTextView.text = appDetailData?.appDescription
+        titleLabel.text = appDetailData.first?.title
+        categoryLabel.text = appDetailData.first?.category.first
+        descriptionTextView.text = appDetailData.first?.appDescription
     }
 }

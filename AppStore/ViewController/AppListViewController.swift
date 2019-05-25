@@ -14,7 +14,7 @@ import Moya
 class AppListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var appDatas: [Results] = []
+    var appDatas: [AppData.Feed.Results] = []
     let provider = MoyaProvider<Appstore>()
     let disposeBag = DisposeBag()
     
@@ -33,8 +33,8 @@ class AppListViewController: UIViewController {
         provider.rx.request(.all).subscribe({ [weak self] result in
             switch result {
             case .success(let response):
-                guard let responseJSON = try? JSONDecoder().decode(Response.self, from: response.data) else { return }
-                self?.appDatas = (responseJSON?.feed.results)!
+                guard let responseJSON = try? JSONDecoder().decode(AppData.self, from: response.data) else { return }
+                self?.appDatas = responseJSON.feed.results
                 
                 self?.tableView.reloadData()
                 
