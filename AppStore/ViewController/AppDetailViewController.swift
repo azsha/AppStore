@@ -8,10 +8,13 @@
 
 import UIKit
 import Cosmos
+import Moya
+import RxSwift
 
 class AppDetailViewController: UIViewController {
 
     var appId: String?                                          //전달된 앱 아이디 정보
+    var appDetailData: AppDetailData?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -45,50 +48,37 @@ class AppDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var sellerLabel: UILabel!
     
+    let provider = MoyaProvider<Appstore>()
+    var disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        initLayout()
         requestData()
     }
 
     func requestData() {
-        let urlPath = "https://itunes.apple.com/lookup?id=\(appId ?? "")&country=kr"
-        print(urlPath)
-        guard let url = URL(string: urlPath) else {return}
-
-        let session = URLSession.shared
-
-        let task = session.dataTask(with: url, completionHandler: { (data, _, _) in
-            do {
-                _ = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+        guard let appId = appId else { return }
+        provider.rx.request(.appDetail(appId: appId)).subscribe({ [weak self] result in
+            switch result {
+            case .success(let response):
+                guard let responseJSON = try? JSONDecoder().decode(AppDetailData.self, from: response.data) else { return }
+                self?.appDetailData = responseJSON
+                self?.setupView()
                 
-                DispatchQueue.main.async {
-                    self.initView()
-                }
-            } catch {
-                print(error)
+            case .error :
+                print("Failure")
             }
-        })
-        task.resume()
+        }).disposed(by: disposeBag)
     }
     
-    func initView() {
-
-    }
-    
-    func showScreenShots() {
-
-    }
-    
-    func initLayout() {
+    func setupView() {
         iconImageView.layer.masksToBounds = true
         iconImageView.layer.cornerRadius = 15
         iconImageView.layer.borderWidth = 0.5
         iconImageView.layer.borderColor = UIColor.lightGray.cgColor
-    }
-    
-    deinit {
-        print("AppDetailViewController Deinit!")
+        
+        titleLabel.text = appDetailData?.title
+        categoryLabel.text = appDetailData?.category
+        descriptionTextView.text = appDetailData?.appDescription
     }
 }
