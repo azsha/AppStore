@@ -11,7 +11,7 @@ import Cosmos
 import Moya
 import RxSwift
 
-class AppDetailViewController: UIViewController {
+class AppDetailViewController: BaseViewController {
 
     var appId: String?                                          //전달된 앱 아이디 정보
     var appDetailData: [AppDetailData.Results] = []
@@ -47,9 +47,6 @@ class AppDetailViewController: UIViewController {
     
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var sellerLabel: UILabel!
-    
-    let provider = MoyaProvider<Appstore>()
-    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

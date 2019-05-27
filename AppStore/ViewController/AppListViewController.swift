@@ -11,12 +11,10 @@ import Alamofire
 import RxSwift
 import Moya
 
-class AppListViewController: UIViewController {
+class AppListViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var appDatas: [AppData.Feed.Results] = []
-    let provider = MoyaProvider<Appstore>()
-    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
