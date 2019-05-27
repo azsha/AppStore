@@ -13,12 +13,18 @@ struct AppData: Decodable {
     struct Feed: Decodable {
         /// Result Json Array
         struct Results: Decodable {
-            var rank: Int?
+            /// Genres Json Array
+            struct Genres: Decodable {
+                var name: String
+            }
             
+            var rank: Int?
+            var genres: [Genres]
             var artistName: String
             var id: String
             var name: String
             var artworkUrl100: String
+            
         }
         
         var results: [Results]

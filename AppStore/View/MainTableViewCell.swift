@@ -17,7 +17,7 @@ class MainTableViewCell: UITableViewCell {
     var appData: AppData.Feed.Results? {
         didSet {
             titleLabel.text = appData?.name
-            //categoryLabel.text = appData?.category.attributes.label
+            categoryLabel.text = appData?.genres.first?.name
             appIconImageView.sd_setImage(with: URL(string: appData!.artworkUrl100))
         }
     }
