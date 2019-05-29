@@ -20,59 +20,32 @@ class AppListViewController: BaseViewController, StoryboardView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = "App Store"
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         
         reactor = AppListViewReactor()
         reactor?.action.onNext(Reactor.Action.updateAppList)
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationController = segue.destination as? AppDetailViewController {
-            destinationController.appId = sender as? String
-        }
+        guard let destinationController = segue.destination as? AppDetailViewController else { return }
+        destinationController.appId = sender as? String
     }
     
     func bind(reactor: AppListViewReactor) {
         // Action
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                let row = indexPath.row
+                self?.performSegue(withIdentifier: "showAppDetail", sender: self?.reactor?.currentState.appList[row].id)
+            })
+            .disposed(by: disposeBag)
         
         // State
         reactor.state
             .map{ $0.appList }
-            .subscribe(onNext: { [weak self] appList in
-                self?.appDatas = appList
-                self?.tableView.reloadData()
-            })
+            .bind(to: tableView.rx.items(cellIdentifier: "MainTableViewCell", cellType: MainTableViewCell.self)) { _ , element, cell in
+                cell.appData = element
+            }
             .disposed(by: disposeBag)
     }
 }
-
-extension AppListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appDatas.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as! MainTableViewCell
-        let row = indexPath.row
-        
-        cell.appData = appDatas[row]
-        
-        return cell
-    }
-}
-
-extension AppListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        self.performSegue(withIdentifier: "showAppDetail", sender: appDatas[row].id)
-    }
-}
-
