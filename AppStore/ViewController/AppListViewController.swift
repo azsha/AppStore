@@ -7,11 +7,13 @@
 //
 
 import UIKit
-import Alamofire
+import ReactorKit
 import RxSwift
+import RxCocoa
+import RxDataSources
 import Moya
 
-class AppListViewController: BaseViewController {
+class AppListViewController: BaseViewController, StoryboardView {
     @IBOutlet weak var tableView: UITableView!
     
     var appDatas: [AppData.Feed.Results] = []
@@ -28,24 +30,27 @@ class AppListViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        provider.rx.request(.all).subscribe({ [weak self] result in
-            switch result {
-            case .success(let response):
-                guard let responseJSON = try? JSONDecoder().decode(AppData.self, from: response.data) else { return }
-                self?.appDatas = responseJSON.feed.results
-                
-                self?.tableView.reloadData()
-                
-            case .error :
-                print("Failure")
-            }
-        }).disposed(by: disposeBag)
+        reactor = AppListViewReactor()
+        reactor?.action.onNext(Reactor.Action.updateAppList)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationController = segue.destination as? AppDetailViewController {
             destinationController.appId = sender as? String
         }
+    }
+    
+    func bind(reactor: AppListViewReactor) {
+        // Action
+        
+        // State
+        reactor.state
+            .map{ $0.appList }
+            .subscribe(onNext: { [weak self] appList in
+                self?.appDatas = appList
+                self?.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
 }
 

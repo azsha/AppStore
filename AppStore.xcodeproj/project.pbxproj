@@ -21,6 +21,7 @@
 		D2B29A1420DC7D4B00D42C4C /* AppStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B29A1320DC7D4B00D42C4C /* AppStoreTests.swift */; };
 		D2B29A1F20DC7D4C00D42C4C /* AppStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B29A1E20DC7D4C00D42C4C /* AppStoreUITests.swift */; };
 		E81B8B04229C244B00274E12 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B8B03229C244B00274E12 /* BaseViewController.swift */; };
+		E81B8B06229EC79900274E12 /* AppListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B8B05229EC79900274E12 /* AppListViewReactor.swift */; };
 		E82C10162298401C00262C05 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C10152298401C00262C05 /* AppStore.swift */; };
 		E8B8001821906EDB00C9B706 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E8B8001721906EDB00C9B706 /* .swiftlint.yml */; };
 		E8B8002121907A4200C9B706 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8002021907A4200C9B706 /* AppData.swift */; };
@@ -70,6 +71,7 @@
 		D2B29A1E20DC7D4C00D42C4C /* AppStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUITests.swift; sourceTree = "<group>"; };
 		D2B29A2020DC7D4C00D42C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E81B8B03229C244B00274E12 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		E81B8B05229EC79900274E12 /* AppListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListViewReactor.swift; sourceTree = "<group>"; };
 		E82C10152298401C00262C05 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		E8B8001721906EDB00C9B706 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E8B8002021907A4200C9B706 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				D2B29A0020DC7D4A00D42C4C /* AppListViewController.swift */,
+				E81B8B05229EC79900274E12 /* AppListViewReactor.swift */,
 				D2AB9A4F20DCBAB500F8E497 /* AppDetailViewController.swift */,
 			);
 			path = ViewController;
@@ -405,11 +408,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-AppStore/Pods-AppStore-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactorKit/ReactorKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -418,11 +423,13 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactorKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -500,6 +507,7 @@
 				D2AB9A5020DCBAB500F8E497 /* AppDetailViewController.swift in Sources */,
 				E81B8B04229C244B00274E12 /* BaseViewController.swift in Sources */,
 				E82C10162298401C00262C05 /* AppStore.swift in Sources */,
+				E81B8B06229EC79900274E12 /* AppListViewReactor.swift in Sources */,
 				D25CAC1B20EDF8B200ED474C /* AppDetailData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

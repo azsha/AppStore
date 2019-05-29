@@ -10,6 +10,7 @@ target 'AppStore' do
   pod 'RxAlamofire'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxDataSources'
   
   # Network
   pod 'Moya/RxSwift', '~> 13.0'
