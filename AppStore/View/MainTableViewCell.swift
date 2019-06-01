@@ -10,9 +10,9 @@ import UIKit
 import SDWebImage
 
 class MainTableViewCell: UITableViewCell {
-    @IBOutlet weak var appIconImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
+    var appIconImageView: UIImageView = UIImageView()
+    var titleLabel: UILabel = UILabel()
+    var categoryLabel: UILabel = UILabel()
     
     var appData: AppData.Feed.Results? {
         didSet {
@@ -22,16 +22,24 @@ class MainTableViewCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        appIconImageView = UIImageView(frame: self.frame)
+        titleLabel = UILabel(frame: self.frame)
+        categoryLabel = UILabel(frame: self.frame)
+        
+        addSubview(appIconImageView)
+        addSubview(titleLabel)
+        addSubview(categoryLabel)
         
         appIconImageView.layer.masksToBounds = true
         appIconImageView.layer.cornerRadius = 7
         appIconImageView.layer.borderWidth = 0.5
         appIconImageView.layer.borderColor = UIColor.lightGray.cgColor
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
