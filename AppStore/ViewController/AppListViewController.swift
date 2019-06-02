@@ -23,8 +23,9 @@ class AppListViewController: BaseViewController, View {
         self.title = "App Store"
         
         tableView = UITableView(frame: self.view.frame)
-        view.addSubview(tableView)
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "MainTableViewCell")
+        tableView.rowHeight = 88
+        view.addSubview(tableView)
         
         reactor = AppListViewReactor()
         reactor?.action.onNext(Reactor.Action.updateAppList)

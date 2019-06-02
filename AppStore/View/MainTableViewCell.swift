@@ -8,8 +8,16 @@
 
 import UIKit
 import SDWebImage
+import SnapKit
 
 class MainTableViewCell: UITableViewCell {
+    fileprivate struct Metric {
+        static let appIconImageViewLeft = 16.0
+        static let appIconImageViewSize = 50.0
+        static let titleLabelLeft = 16.0
+        static let categoryLabelLeft = 16.0
+    }
+    
     var appIconImageView: UIImageView = UIImageView()
     var titleLabel: UILabel = UILabel()
     var categoryLabel: UILabel = UILabel()
@@ -25,13 +33,27 @@ class MainTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        appIconImageView = UIImageView(frame: self.frame)
-        titleLabel = UILabel(frame: self.frame)
-        categoryLabel = UILabel(frame: self.frame)
-        
         addSubview(appIconImageView)
         addSubview(titleLabel)
         addSubview(categoryLabel)
+    }
+    
+    override func layoutSubviews() {
+        appIconImageView.snp.makeConstraints{ make in
+            make.size.equalTo(CGSize(width: Metric.appIconImageViewSize, height: Metric.appIconImageViewSize))
+            make.left.equalTo(self.contentView).offset(Metric.appIconImageViewLeft)
+            make.centerY.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints{ make in
+            make.left.equalTo(appIconImageView.snp.right).offset(Metric.titleLabelLeft)
+            make.top.equalToSuperview().offset(12)
+        }
+        
+        categoryLabel.snp.makeConstraints{ make in
+            make.left.equalTo(appIconImageView.snp.right).offset(Metric.categoryLabelLeft)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+        }
         
         appIconImageView.layer.masksToBounds = true
         appIconImageView.layer.cornerRadius = 7
