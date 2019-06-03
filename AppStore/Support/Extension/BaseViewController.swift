@@ -16,4 +16,14 @@ class BaseViewController: UIViewController {
     
     /// DisposeBag (Rx)
     var disposeBag = DisposeBag()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+    }
+    
+    func setupView() {
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.backgroundColor = .white
+    }
 }

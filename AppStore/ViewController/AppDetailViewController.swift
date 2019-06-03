@@ -60,7 +60,7 @@ class AppDetailViewController: BaseViewController {
             case .success(let response):
                 guard let responseJSON = try? JSONDecoder().decode(AppDetailData.self, from: response.data) else { return }
                 self?.appDetailData = responseJSON.results
-                self?.setupView()
+                self?.updateView()
                 
             case .error :
                 print("Failure")
@@ -68,7 +68,7 @@ class AppDetailViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
     
-    func setupView() {
+    func updateView() {
         iconImageView.layer.masksToBounds = true
         iconImageView.layer.cornerRadius = 15
         iconImageView.layer.borderWidth = 0.5

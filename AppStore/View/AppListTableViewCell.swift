@@ -10,12 +10,14 @@ import UIKit
 import SDWebImage
 import SnapKit
 
-class MainTableViewCell: UITableViewCell {
+class AppListTableViewCell: UITableViewCell {
     fileprivate struct Metric {
         static let appIconImageViewLeft = 16.0
         static let appIconImageViewSize = 50.0
         static let titleLabelLeft = 16.0
+        static let titleLabelTop = 12.0
         static let categoryLabelLeft = 16.0
+        static let categoryLabelTop = 8.0
     }
     
     var appIconImageView: UIImageView = UIImageView()
@@ -47,12 +49,12 @@ class MainTableViewCell: UITableViewCell {
         
         titleLabel.snp.makeConstraints{ make in
             make.left.equalTo(appIconImageView.snp.right).offset(Metric.titleLabelLeft)
-            make.top.equalToSuperview().offset(12)
+            make.top.equalToSuperview().offset(Metric.titleLabelTop)
         }
         
         categoryLabel.snp.makeConstraints{ make in
             make.left.equalTo(appIconImageView.snp.right).offset(Metric.categoryLabelLeft)
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.top.equalTo(titleLabel.snp.bottom).offset(Metric.categoryLabelTop)
         }
         
         appIconImageView.layer.masksToBounds = true

@@ -14,21 +14,52 @@ import RxDataSources
 import Moya
 
 class AppListViewController: BaseViewController, View {
-    var tableView: UITableView = UITableView()
+    let headerView: UIView = UIView()
+    let titleLabel: UILabel = UILabel()
+    let tableView: UITableView = UITableView()
     
     var appDatas: [AppData.Feed.Results] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "App Store"
-        
-        tableView = UITableView(frame: self.view.frame)
-        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "MainTableViewCell")
-        tableView.rowHeight = 88
-        view.addSubview(tableView)
-        
+    
         reactor = AppListViewReactor()
         reactor?.action.onNext(Reactor.Action.updateAppList)
+    }
+    
+    override func setupView() {
+        super.setupView()
+         self.title = "App Store"
+        
+        view.addSubview(headerView)
+        headerView.snp.makeConstraints{ make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(88)
+        }
+        
+        headerView.backgroundColor = .white
+        
+        headerView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints{  make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(16)
+        }
+        
+        titleLabel.text = "인기차트"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints{ make in
+            make.top.equalTo(headerView.snp.bottom)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        tableView.register(AppListTableViewCell.self, forCellReuseIdentifier: "AppListTableViewCell")
+        tableView.rowHeight = 88
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -48,7 +79,7 @@ class AppListViewController: BaseViewController, View {
         // State
         reactor.state
             .map{ $0.appList }
-            .bind(to: tableView.rx.items(cellIdentifier: "MainTableViewCell", cellType: MainTableViewCell.self)) { _ , element, cell in
+            .bind(to: tableView.rx.items(cellIdentifier: "AppListTableViewCell", cellType: AppListTableViewCell.self)) { _ , element, cell in
                 cell.appData = element
             }
             .disposed(by: disposeBag)
