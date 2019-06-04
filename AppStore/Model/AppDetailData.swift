@@ -13,7 +13,7 @@ struct AppDetailData: Decodable {
         var appId: Int                                              //앱 아이디
         var iconUrlPath: String                                     //앱 아이콘 URL 경로
         var title: String                                           //앱 타이틀
-        var category: [String]                                       //앱 카테고리
+        var category: [String]                                      //앱 카테고리
         var age: String                                             //앱 사용 연령
         var rank: Int?                                              //앱 순위
         var reviewCount: Int                                        //앱 리뷰 개수

@@ -25,6 +25,8 @@
 		E82C10162298401C00262C05 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C10152298401C00262C05 /* AppStore.swift */; };
 		E8B8001821906EDB00C9B706 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E8B8001721906EDB00C9B706 /* .swiftlint.yml */; };
 		E8B8002121907A4200C9B706 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8002021907A4200C9B706 /* AppData.swift */; };
+		E8DB419822A692250007FF03 /* ScreenShotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB419722A692250007FF03 /* ScreenShotView.swift */; };
+		E8DB419A22A694E10007FF03 /* ScreenShotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB419922A694E10007FF03 /* ScreenShotCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		E82C10152298401C00262C05 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		E8B8001721906EDB00C9B706 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E8B8002021907A4200C9B706 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		E8DB419722A692250007FF03 /* ScreenShotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotView.swift; sourceTree = "<group>"; };
+		E8DB419922A694E10007FF03 /* ScreenShotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,7 +220,8 @@
 		E8B8001B219071D800C9B706 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D2AB9A4D20DCB67600F8E497 /* AppListTableViewCell.swift */,
+				E8DB419522A691990007FF03 /* Cell */,
+				E8DB419622A691A90007FF03 /* CustomView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +248,23 @@
 				E81B8B03229C244B00274E12 /* BaseViewController.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		E8DB419522A691990007FF03 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D2AB9A4D20DCB67600F8E497 /* AppListTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E8DB419622A691A90007FF03 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				E8DB419722A692250007FF03 /* ScreenShotView.swift */,
+				E8DB419922A694E10007FF03 /* ScreenShotCell.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,6 +522,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8DB419822A692250007FF03 /* ScreenShotView.swift in Sources */,
+				E8DB419A22A694E10007FF03 /* ScreenShotCell.swift in Sources */,
 				D2B29A0120DC7D4A00D42C4C /* AppListViewController.swift in Sources */,
 				D2AB9A4E20DCB67600F8E497 /* AppListTableViewCell.swift in Sources */,
 				E8B8002121907A4200C9B706 /* AppData.swift in Sources */,
