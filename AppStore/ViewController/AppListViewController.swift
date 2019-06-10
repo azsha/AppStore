@@ -62,17 +62,14 @@ class AppListViewController: BaseViewController, View {
         tableView.rowHeight = 88
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destinationController = segue.destination as? AppDetailViewController else { return }
-        destinationController.appId = sender as? String
-    }
-    
     func bind(reactor: AppListViewReactor) {
         // Action
         tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 let row = indexPath.row
-                self?.performSegue(withIdentifier: "showAppDetail", sender: self?.reactor?.currentState.appList[row].id)
+                let destinationController = AppDetailViewController()
+                destinationController.appId = self?.reactor?.currentState.appList[row].id
+                self?.navigationController?.pushViewController(destinationController, animated: true)
             })
             .disposed(by: disposeBag)
         

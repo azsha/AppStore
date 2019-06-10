@@ -16,43 +16,86 @@ class AppDetailViewController: BaseViewController {
     var appId: String?                                          //전달된 앱 아이디 정보
     var appDetailData: [AppDetailData.Results] = []
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var iconImageView: UIImageView!
+    let scrollView: UIScrollView = UIScrollView()
+    let contentView: UIView = UIView()
     
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var rankLabel: UILabel!
-    @IBOutlet weak var category2Label: UILabel!
-    @IBOutlet weak var reviewCountLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var ratingView: CosmosView!
+    let titleLabel: UILabel = UILabel()
+    let categoryLabel: UILabel = UILabel()
+    let iconImageView: UIImageView = UIImageView()
     
-    @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var releaseNotesTextView: UITextView!
+    let ageLabel: UILabel = UILabel()
+    let rankLabel: UILabel = UILabel()
+    let category2Label: UILabel = UILabel()
+    let reviewCountLabel: UILabel = UILabel()
+    let ratingLabel: UILabel = UILabel()
+    let ratingView: CosmosView = CosmosView()
     
-    @IBOutlet weak var screenshot1ImageView: UIImageView!
-    @IBOutlet weak var screenshot2ImageView: UIImageView!
-    @IBOutlet weak var screenshot3ImageView: UIImageView!
-    @IBOutlet weak var screenshot4ImageView: UIImageView!
-    @IBOutlet weak var screenshot5ImageView: UIImageView!
-    @IBOutlet weak var screenshot6ImageView: UIImageView!
+    let screenShotView: ScreenShotView = ScreenShotView()
+    let versionLabel: UILabel = UILabel()
+    let releaseNotesTextView: UITextView = UITextView()
     
-    //스크린샷 개수에 따라 보여주는 이미지 뷰 조정을 위한 LayoutConstraint
-    @IBOutlet weak var screenshot1WidthLC: NSLayoutConstraint!
-    @IBOutlet weak var screenshot2WidthLC: NSLayoutConstraint!
-    @IBOutlet weak var screenshot3WidthLC: NSLayoutConstraint!
-    @IBOutlet weak var screenshot4WidthLC: NSLayoutConstraint!
-    @IBOutlet weak var screenshot5WidthLC: NSLayoutConstraint!
-    @IBOutlet weak var screenshot6WidthLC: NSLayoutConstraint!
-    
-    @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var sellerLabel: UILabel!
+    let descriptionTextView: UITextView = UITextView()
+    let sellerLabel: UILabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         requestData()
     }
 
+    override func setupView() {
+        super.setupView()
+        
+        view.backgroundColor = .white
+        
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.right.equalToSuperview()
+        }
+        
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints{ make in
+            make.top.equalToSuperview().offset(0)
+            make.left.equalToSuperview().offset(0)
+            make.bottom.equalToSuperview().offset(0)
+            make.right.equalToSuperview().offset(0)
+            make.width.equalTo(scrollView)
+            make.height.equalTo(scrollView).priority(.low)
+        }
+        
+        contentView.addSubview(iconImageView)
+        iconImageView.snp.makeConstraints{ make in
+            make.top.equalToSuperview().offset(8)
+            make.left.equalToSuperview().offset(24)
+            make.height.equalTo(120)
+            make.width.equalTo(120)
+        }
+        
+        contentView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints{ make in
+            make.top.equalToSuperview().offset(16)
+            make.left.equalTo(iconImageView.snp.right).offset(24)
+        }
+        
+        contentView.addSubview(categoryLabel)
+        categoryLabel.snp.makeConstraints{ make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.left.equalTo(iconImageView.snp.right).offset(24)
+        }
+        
+        contentView.addSubview(screenShotView)
+        screenShotView.snp.makeConstraints{ make in
+            make.top.equalTo(iconImageView.snp.bottom).offset(8)
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(0)
+            make.height.equalTo(720)
+            make.bottom.equalToSuperview()
+        }
+        
+    }
+    
     func requestData() {
         guard let appId = appId else { return }
         provider.rx.request(.appDetail(appId: appId)).subscribe({ [weak self] result in
@@ -62,6 +105,8 @@ class AppDetailViewController: BaseViewController {
                 self?.appDetailData = responseJSON.results
                 self?.updateView()
                 
+                print(self?.appDetailData)
+                
             case .error :
                 print("Failure")
             }
@@ -70,12 +115,14 @@ class AppDetailViewController: BaseViewController {
     
     func updateView() {
         iconImageView.layer.masksToBounds = true
-        iconImageView.layer.cornerRadius = 15
+        iconImageView.layer.cornerRadius = 20
         iconImageView.layer.borderWidth = 0.5
         iconImageView.layer.borderColor = UIColor.lightGray.cgColor
         
         titleLabel.text = appDetailData.first?.title
         categoryLabel.text = appDetailData.first?.category.first
         descriptionTextView.text = appDetailData.first?.appDescription
+        
+        screenShotView.screenShotUrlPaths.onNext(appDetailData.first?.screenShotUrlPaths ?? [])
     }
 }

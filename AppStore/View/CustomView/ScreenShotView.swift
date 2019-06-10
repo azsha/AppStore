@@ -12,8 +12,9 @@ import RxCocoa
 import SnapKit
 
 class ScreenShotView: UIView {
-    let collectionView: UICollectionView = UICollectionView()
+    let collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     var screenShotUrlPaths: PublishSubject<[String]> = PublishSubject<[String]>()
+    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
     
     var disposeBag: DisposeBag = DisposeBag()
     
@@ -27,8 +28,15 @@ class ScreenShotView: UIView {
     }
     
     func setupView() {
-        collectionView.register(ScreenShotCell.self, forCellWithReuseIdentifier: "ScreenShotCell")
+        layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 16, height: 700)
         
+        collectionView.setCollectionViewLayout(layout, animated: true)
+        collectionView.register(ScreenShotCell.self, forCellWithReuseIdentifier: "ScreenShotCell")
+        collectionView.backgroundColor = .white
+        collectionView.isPagingEnabled = true
+        
+        addSubview(collectionView)
         collectionView.snp.makeConstraints{ make in
             make.top.equalToSuperview()
             make.left.equalToSuperview()

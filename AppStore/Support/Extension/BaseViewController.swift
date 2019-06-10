@@ -17,6 +17,14 @@ class BaseViewController: UIViewController {
     /// DisposeBag (Rx)
     var disposeBag = DisposeBag()
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        self.init()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()

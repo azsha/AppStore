@@ -26,13 +26,17 @@ class ScreenShotCell: UICollectionViewCell {
     
     func setupView() {
         addSubview(screenShotImageView)
-        
         screenShotImageView.snp.makeConstraints{ make in
             make.top.equalToSuperview()
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        
+        screenShotImageView.layer.cornerRadius = 20
+        screenShotImageView.layer.borderWidth = 0.5
+        screenShotImageView.layer.borderColor = UIColor.lightGray.cgColor
+        screenShotImageView.layer.masksToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
