@@ -88,9 +88,9 @@ class AppDetailViewController: BaseViewController {
         contentView.addSubview(screenShotView)
         screenShotView.snp.makeConstraints{ make in
             make.top.equalTo(iconImageView.snp.bottom).offset(8)
-            make.left.equalToSuperview().offset(8)
+            make.left.equalToSuperview().offset(0)
             make.right.equalToSuperview().offset(0)
-            make.height.equalTo(720)
+            make.height.equalTo(348)
             make.bottom.equalToSuperview()
         }
         
