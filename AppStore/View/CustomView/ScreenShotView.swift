@@ -12,11 +12,13 @@ import RxCocoa
 import SnapKit
 
 class ScreenShotView: UIView {
-    let collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-    var screenShotUrlPaths: PublishSubject<[String]> = PublishSubject<[String]>()
-    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
+    fileprivate let collectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+    fileprivate let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
     
-    var disposeBag: DisposeBag = DisposeBag()
+    /// ScreenShot Data
+    var screenShotUrlPaths: PublishSubject<[String]> = PublishSubject<[String]>()
+    
+    fileprivate var disposeBag: DisposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,12 +45,10 @@ class ScreenShotView: UIView {
                 guard let self = self else { return }
                 let position = self.collectionView.contentOffset.x
                 
-                print(position)
-                
                 guard Int(position) != 0 else { return }
                 let index = Int(position + 104) / 208
                 
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.animate(withDuration: 0.2, animations: {
                     self.collectionView.setContentOffset(CGPoint(x: 208 * index, y: 0), animated: false)
                 })
             }).disposed(by: disposeBag)
@@ -58,12 +58,10 @@ class ScreenShotView: UIView {
                 guard let self = self else { return }
                 let position = self.collectionView.contentOffset.x
                 
-                print(position)
-                
                 guard Int(position) != 0 else { return }
                 let index = Int(position + 104) / 208
                 
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.animate(withDuration: 0.2, animations: {
                     self.collectionView.setContentOffset(CGPoint(x: 208 * index, y: 0), animated: false)
                 })
             }).disposed(by: disposeBag)
@@ -72,7 +70,7 @@ class ScreenShotView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        screenShotUrlPaths.asObservable()
+        screenShotUrlPaths
             .bind(to: collectionView.rx.items) { (collectionView, row, element) in
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenShotCell", for: indexPath) as! ScreenShotCell
