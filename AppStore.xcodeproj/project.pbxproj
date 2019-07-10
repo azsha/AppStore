@@ -22,6 +22,7 @@
 		E81B8B04229C244B00274E12 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B8B03229C244B00274E12 /* BaseViewController.swift */; };
 		E81B8B06229EC79900274E12 /* AppListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B8B05229EC79900274E12 /* AppListViewReactor.swift */; };
 		E82C10162298401C00262C05 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C10152298401C00262C05 /* AppStore.swift */; };
+		E88712E122B27CAB00CFE853 /* InfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88712E022B27CAB00CFE853 /* InfoHeaderView.swift */; };
 		E8B8001821906EDB00C9B706 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E8B8001721906EDB00C9B706 /* .swiftlint.yml */; };
 		E8B8002121907A4200C9B706 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8002021907A4200C9B706 /* AppData.swift */; };
 		E8DB419822A692250007FF03 /* ScreenShotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB419722A692250007FF03 /* ScreenShotView.swift */; };
@@ -73,6 +74,7 @@
 		E81B8B03229C244B00274E12 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E81B8B05229EC79900274E12 /* AppListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListViewReactor.swift; sourceTree = "<group>"; };
 		E82C10152298401C00262C05 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
+		E88712E022B27CAB00CFE853 /* InfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHeaderView.swift; sourceTree = "<group>"; };
 		E8B8001721906EDB00C9B706 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E8B8002021907A4200C9B706 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		E8DB419722A692250007FF03 /* ScreenShotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShotView.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		E8DB419622A691A90007FF03 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				E88712E022B27CAB00CFE853 /* InfoHeaderView.swift */,
 				E8DB419722A692250007FF03 /* ScreenShotView.swift */,
 				E8DB419922A694E10007FF03 /* ScreenShotCell.swift */,
 			);
@@ -529,6 +532,7 @@
 				E82C10162298401C00262C05 /* AppStore.swift in Sources */,
 				E81B8B06229EC79900274E12 /* AppListViewReactor.swift in Sources */,
 				D25CAC1B20EDF8B200ED474C /* AppDetailData.swift in Sources */,
+				E88712E122B27CAB00CFE853 /* InfoHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

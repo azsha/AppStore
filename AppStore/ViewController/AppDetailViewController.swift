@@ -23,17 +23,11 @@ class AppDetailViewController: BaseViewController {
     let categoryLabel: UILabel = UILabel()
     let iconImageView: UIImageView = UIImageView()
     
-    let ageLabel: UILabel = UILabel()
-    let rankLabel: UILabel = UILabel()
-    let category2Label: UILabel = UILabel()
-    let reviewCountLabel: UILabel = UILabel()
-    let ratingLabel: UILabel = UILabel()
-    let ratingView: CosmosView = CosmosView()
-    
+    let infoHeaderView: InfoHeaderView = InfoHeaderView()
     let screenShotView: ScreenShotView = ScreenShotView()
+    
     let versionLabel: UILabel = UILabel()
     let releaseNotesTextView: UITextView = UITextView()
-    
     let descriptionTextView: UITextView = UITextView()
     let sellerLabel: UILabel = UILabel()
     
@@ -85,9 +79,15 @@ class AppDetailViewController: BaseViewController {
             make.left.equalTo(iconImageView.snp.right).offset(24)
         }
         
+        contentView.addSubview(infoHeaderView)
+        infoHeaderView.snp.makeConstraints{ make in
+            make.top.equalTo(iconImageView.snp.bottom).offset(8)
+            make.left.equalTo(iconImageView.snp.right).offset(24)
+        }
+        
         contentView.addSubview(screenShotView)
         screenShotView.snp.makeConstraints{ make in
-            make.top.equalTo(iconImageView.snp.bottom).offset(8)
+            make.top.equalTo(infoHeaderView.snp.bottom).offset(8)
             make.left.equalToSuperview().offset(0)
             make.right.equalToSuperview().offset(0)
             make.height.equalTo(348)
@@ -118,6 +118,7 @@ class AppDetailViewController: BaseViewController {
         iconImageView.layer.cornerRadius = 20
         iconImageView.layer.borderWidth = 0.5
         iconImageView.layer.borderColor = UIColor.lightGray.cgColor
+        iconImageView.sd_setImage(with: URL(string: appDetailData.first?.iconUrlPath ?? ""))
         
         titleLabel.text = appDetailData.first?.title
         categoryLabel.text = appDetailData.first?.category.first
